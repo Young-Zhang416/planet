@@ -1,0 +1,28 @@
+[project]
+name = "planet"
+version = "0.1.0"
+description = "Modular PyTorch reproduction of PlaNet latent dynamics and planning"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dm-control>=1.0.50",
+    "torch<=2.11.0",
+]
+
+[project.optional-dependencies]
+control = ["dm-control>=1.0.20", "numpy>=1.26"]
+
+[project.scripts]
+planet = "planet:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
